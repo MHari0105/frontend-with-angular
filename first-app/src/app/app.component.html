@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>App Component</h3>
+            <app-warning-alert></app-warning-alert>
+            <app-success-alert></app-success-alert>
+            <hr>
+            <app-servers></app-servers>
+        </div>
+    </div>
+</div>
+
+<!-- TASK 1 -->
+<label for="">Username </label>
+<input type="text" [(ngModel)]="username">
+<button [disabled]="username === ''" (click)="onClickingTask1Button()">Clear</button>
+<p>{{ username }}</p> 
+
+
+
+<!-- TASK 2 -->
+<button (click)="onToggleDisplay()">Display Details</button>
+<p *ngIf="showSecret">Password : 12345678</p>
+<div *ngFor="let logItem of log; let i = index"
+    [ngStyle]="{backgroundColor : i >= 4 ? 'blue' : 'white'}"
+    [ngClass]="{'white-text' : i >= 4}">
+    Logged in at : {{ logItem }}
+</div>

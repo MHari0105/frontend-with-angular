@@ -1,0 +1,33 @@
+<!-- EVENT BINDING -->
+<label for="">Server Name</label>
+<input type="text" (input)="onUpdateServerName1($event)">
+<!-- <p>{{ serverName }}</p> -->
+
+<!-- PROPERTY BINDING -->
+<button 
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()"
+>Add Server</button>
+<!-- <p>{{ allowNewServer }}</p>
+<p [innerText]="allowNewServer"></p> -->
+
+
+<!-- STRING INTERPOLATION, DIRECTIVES -->
+<p *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</p>
+<ng-template #noServer>
+    <p>{{ serverCreationStatus }}</p>
+</ng-template>
+
+
+
+<hr>
+
+<!-- 2 WAY BINDING -->
+<label for="">Server Name 2</label>
+<input type="text" [(ngModel)]="serverName2">
+<p>{{ serverName2 }}</p>
+
+
+<hr>
+
+<app-server *ngFor="let server of servers"></app-server>
