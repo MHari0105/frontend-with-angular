@@ -1,0 +1,10 @@
+<!-- <p>
+    @if (customers.length = 0) {
+        <p>Empty</p>
+    }
+</p> -->
+<ul>
+    @for (customer of customers; track customers) {
+        {{ customer.name }}
+    }
+</ul>

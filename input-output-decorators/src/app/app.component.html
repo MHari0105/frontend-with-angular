@@ -1,0 +1,10 @@
+<div style="justify-content: center; width: 800px; height: 100px;">
+  <div>
+    <h3>Add Customer</h3>
+    <app-add-customer (customerAdded)="getCustomers($event)"></app-add-customer>
+    <br><br>
+
+    <h3>View Customer</h3>
+    <app-view-customer [customers]="customers"></app-view-customer>
+  </div>
+</div>
