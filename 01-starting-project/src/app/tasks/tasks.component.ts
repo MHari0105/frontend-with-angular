@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
+import { NewTask } from '../models/new-task.model';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -15,43 +17,17 @@ export class TasksComponent {
   @Input({ required : true }) name!: string;
   isAddingTasks = false;
 
-  tasks = [
-    {
-      id : 't1',
-      userId : 'u1',
-      title : 'Angular 17 Crash Course',
-      summary : 'Learn Angular Zero to Hero',
-      dueDate : '2025-12-31'
-    },
-    {
-      id : 't2',
-      userId : 'u2',
-      title : 'Spring boot 3 Crash Course',
-      summary : 'Learn Java Spring boot Zero to Hero',
-      dueDate : '2025-10-31'
-    },
-    {
-      id : 't3',
-      userId : 'u2',
-      title : 'Mongo DB',
-      summary : 'Learn Mongo DB Zero to Hero',
-      dueDate : '2025-11-31'
-    }
-  ];
+  constructor(private tasksService : TasksService) { }  // DEPENDENCY INJECTION
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
-  }
-
-  removeTaskIfCompleted(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+    return this.tasksService.getUserTasks(this.userId);
   }
 
   addNewTasks() {
     this.isAddingTasks = true;
   }
 
-  onCancelTask() {
+  onCloseTask() {
     this.isAddingTasks = false;
   }
 
